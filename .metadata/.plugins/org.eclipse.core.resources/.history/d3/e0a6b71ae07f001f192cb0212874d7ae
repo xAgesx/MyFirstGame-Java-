@@ -1,0 +1,13 @@
+package Object;
+
+import javax.imageio.ImageIO;
+
+public class Coin extends SuperObject{
+	
+	public Coin() {
+		name = "Coin";
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/objects/Coin"));
+		}
+	}
+}

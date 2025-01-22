@@ -1,0 +1,33 @@
+package Main;
+
+import Object.Chest;
+import Object.Coin;
+import Object.Key;
+import Object.Potion;
+
+public class ObjectPlacer {
+
+	GamePanel g ;
+	
+	public ObjectPlacer(GamePanel g) {
+		this.g = g;
+	}
+	public void setObject() {
+		
+		g.obj[0] = new Key();	
+		g.obj[0].worldX = 466;
+		g.obj[0].worldY = 466;
+		
+		g.obj[1] = new Potion();	
+		g.obj[1].worldX = 466;
+		g.obj[1].worldY = 424;
+		
+		g.obj[2] = new Coin();
+		g.obj[2].worldX = 384;
+		g.obj[2].worldY = 480;
+		
+		g.obj[3] = new Chest();
+		g.obj[3].worldX = 6 * g.TileSize;
+		g.obj[3].worldY = 16 * g.TileSize;
+	}
+}

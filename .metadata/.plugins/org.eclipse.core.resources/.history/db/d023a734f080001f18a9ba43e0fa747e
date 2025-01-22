@@ -1,0 +1,17 @@
+package Object;
+
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+public class DoubleDoor extends SuperObject{
+
+	public DoubleDoor() {
+		name = "DoubleDoor";
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/objects/DoubleDoor.png"));
+		}catch(IOException e ) {
+			e.printStackTrace();
+		}
+	}
+}

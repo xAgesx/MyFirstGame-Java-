@@ -1,0 +1,146 @@
+package Main;
+
+import java.awt.Rectangle;
+
+import Entity.Entity;
+
+public class CollisionCheck {
+	
+	GamePanel g;
+	
+	public CollisionCheck(GamePanel g) {
+		
+		this.g = g ; 
+		
+	}
+	
+	public void ObjectCheckCollision(Entity entity) {
+		
+		
+		if(entity.worldX > g.player.worldX - g.player.RelativeX - g.TileSize && entity.worldX < g.player.worldX + g.player.RelativeX + g.TileSize 
+				&& entity.worldY > g.player.worldY - g.player.RelativeY - g.TileSize && entity.worldY < g.player.worldY + g.player.RelativeY + g.TileSize ) {
+			
+			for ( int i = 15 ; i < 16 ; i++) {
+				
+				if(g.obj[i] != null) {
+					
+				entity.hitBox.x = entity.worldX + entity.hitBox.x;
+				entity.hitBox.y = entity.worldY + entity.hitBox.y;
+				
+				g.obj[i].hitBox.x += g.obj[i].worldX ;
+				g.obj[i].hitBox.y += g.obj[i].worldY ;
+				
+				
+				switch (entity.Direction) {
+				
+				case "up" :
+					 entity.hitBox.y -= entity.Speed;
+						
+						if(entity.hitBox.intersects(g.obj[i].hitBox)  ) {
+							System.out.println("Intersection up!");
+							if(g.obj[i].collision == true ) {
+								
+								entity.collisionOn = true ;
+								System.out.println("hey");
+							}
+								
+							
+						}
+					
+					
+						break;
+						
+					case "down" :  entity.hitBox.y += entity.Speed;
+					if(entity.hitBox.intersects(g.obj[i].hitBox)  ) {
+						System.out.println("Intersection down!");
+						if(g.obj[i].collision == true ) 
+							entity.collisionOn = true ;
+						
+					}
+						break;
+						
+					case "left" :  entity.hitBox.x -= entity.Speed;
+					if(entity.hitBox.intersects(g.obj[i].hitBox)  ) {
+						System.out.println("Intersection left!");
+						if(g.obj[i].collision == true ) 
+							entity.collisionOn = true ;
+						
+					}
+						break;
+					case "right" : entity.hitBox.x += entity.Speed;
+					if(entity.hitBox.intersects(g.obj[i].hitBox)  ) {
+						System.out.println("Intersection right!");
+						if(g.obj[i].collision == true ) 
+							entity.collisionOn = true ;
+						
+					}
+						break;
+						
+					}
+				
+			
+				entity.hitBox.x = entity.defaultHitBoxX ;
+				entity.hitBox.y = entity.defaultHitBoxX ;
+				g.obj[i].hitBox.x = g.obj[i].DefaultHitBoxX;
+				g.obj[i].hitBox.y = g.obj[i].DefaultHitBoxY;
+				
+				}	
+			}
+		
+			
+
+	}
+	}
+	
+	public void TileCheck(Entity entity ) {
+		
+		int hitBoxLeftX = entity.worldX + entity.hitBox.x ;
+		int hitBoxRightX = entity.worldX + entity.hitBox.x + entity.hitBox.width ;
+		int hitBoxTopY = entity.worldY + entity.hitBox.y;
+		int hitBoxBottomY = entity.worldY + entity.hitBox.y + entity.hitBox.height ;
+		
+		int hitBoxLeftCol = hitBoxLeftX / g.TileSize;
+		int hitBoxRightCol = hitBoxRightX / g.TileSize;
+		int hitBoxTopRow = hitBoxTopY / g.TileSize;
+		int hitBoxBottomRow = hitBoxBottomY / g.TileSize;
+		
+		int Tile1,Tile2;
+		
+switch (entity.Direction) {
+		
+		case "up" : hitBoxTopRow = (hitBoxTopY - entity.Speed) / g.TileSize ;
+					Tile1 = g.TileM.TileMapNum[hitBoxLeftCol][hitBoxTopRow];
+					Tile2 = g.TileM.TileMapNum[hitBoxRightCol][hitBoxTopRow];
+					if(g.TileM.tile[Tile1].collision == true || g.TileM.tile[Tile2].collision == true) {
+						entity.collisionOn = true ;
+					}
+			break;
+			
+		case "down" :  hitBoxBottomRow = (hitBoxBottomY + entity.Speed) / g.TileSize ;
+						Tile1 = g.TileM.TileMapNum[hitBoxLeftCol][hitBoxBottomRow];
+						Tile2 = g.TileM.TileMapNum[hitBoxRightCol][hitBoxBottomRow];
+						if(g.TileM.tile[Tile1].collision == true || g.TileM.tile[Tile2].collision == true) {
+							entity.collisionOn = true ;
+		}
+			break;
+			
+		case "left" :  hitBoxLeftCol = (hitBoxLeftX - entity.Speed) / g.TileSize ;
+						Tile1 = g.TileM.TileMapNum[hitBoxLeftCol][hitBoxTopRow];
+						Tile2 = g.TileM.TileMapNum[hitBoxLeftCol][hitBoxBottomRow];
+						if(g.TileM.tile[Tile1].collision == true || g.TileM.tile[Tile2].collision == true) {
+							entity.collisionOn = true ;
+		}
+			break;
+		case "right" :  hitBoxRightCol = (hitBoxRightX + entity.Speed) / g.TileSize ;
+						Tile1 = g.TileM.TileMapNum[hitBoxRightCol][hitBoxTopRow];
+						Tile2 = g.TileM.TileMapNum[hitBoxRightCol][hitBoxBottomRow];
+						if(g.TileM.tile[Tile1].collision == true || g.TileM.tile[Tile2].collision == true) {
+							entity.collisionOn = true ;
+		}
+			break;
+			
+		
+		}
+	}
+	
+}

@@ -1,0 +1,23 @@
+package Object;
+
+import java.awt.Rectangle;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+public class Chest extends SuperObject{
+	
+	public Chest() {
+		name = "Chest";
+		hitBox = new Rectangle(0,0,48,48);
+		
+		collision = true ;
+		worldX = 6 * 48;
+		worldY = 16 * 48;
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/objects/Chest1.png"));
+		}catch(IOException e ) {
+			e.printStackTrace();
+		}
+	}
+}

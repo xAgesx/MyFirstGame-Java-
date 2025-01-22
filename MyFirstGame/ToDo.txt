@@ -1,0 +1,43 @@
+=-=-=-=-=-= TO DO =-=-=-=-=
+
+>>>>>>>> BUG FIXES <<<<<<<<  
+
+	- NPC DIALOGUE :
+		* Automatically exit after the dialogue 
+		* GameState 1 in between sentences fix
+		
+	- SETTINGS MENU : 
+		* GameState = 0 on Back press
+		* Controls display correction on hover
+		* FullScreen disable fix
+		
+	- Entity : 
+		* Entity mvt is bugged ( because of the images )
+		
+	- KeyHandler : 
+		* VK_E for InteractPressed is updating as long as the key is pressed ( need to update once then be disabled )
+		
+	- Teleport : 
+		* when a player enters a teleporter from the bottom it keeps send him back and forth ( just never put the player under the teleporter for now )
+		
+		
+>>>>>>>> To Add <<<<<<<<
+
+	- Settings Content : 
+		* controls
+	
+	- Stats : 
+		* Proper Icons
+		
+	- Character Classes 
+	
+	
+	
+>>>>>>>> REWORK/MODIF <<<<<<<<
+	
+	- Stats : 
+		* baseDmg / Strength calculations 
+		* Mana abilities (maybe depends on the weapon or the class )
+	
+	- Dialogues and conversations 
+	

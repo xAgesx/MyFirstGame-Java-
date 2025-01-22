@@ -1,0 +1,17 @@
+package Object;
+
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+public class Sword extends SuperObject{
+	
+	public Sword () {
+		name = "Sword";
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("Sword1.png"));
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

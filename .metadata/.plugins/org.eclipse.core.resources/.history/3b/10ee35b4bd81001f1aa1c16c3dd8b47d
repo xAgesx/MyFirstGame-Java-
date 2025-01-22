@@ -1,0 +1,42 @@
+package Main;
+
+import Object.Chest;
+import Object.Coin;
+import Object.DoubleDoor;
+import Object.Key;
+import Object.Potion;
+import Object.Sword;
+
+public class ObjectPlacer {
+
+	GamePanel g ;
+	
+	public ObjectPlacer(GamePanel g) {
+		this.g = g;
+	}
+	public void setObject() {
+		
+		g.obj[0] = new Key();	
+		g.obj[0].worldX = 9 * g.TileSize;
+		g.obj[0].worldY = 8 * g.TileSize;
+		
+		g.obj[1] = new Potion();	
+		g.obj[1].worldX = 6 * g.TileSize;
+		g.obj[1].worldY = 17 * g.TileSize;
+		
+		g.obj[2] = new Coin();
+		g.obj[2].worldX = 7 * g.TileSize;
+		g.obj[2].worldY = 10 * g.TileSize;
+		
+		g.obj[3] = new Chest();
+		
+		
+		g.obj[4] = new Sword();
+		g.obj[4].worldX = 8 * g.TileSize;
+		g.obj[4].worldY = 19 * g.TileSize;
+		
+		g.obj[15] = new DoubleDoor();
+		g.obj[15].worldX = 6 * g.TileSize;
+		g.obj[15].worldY = 18 * g.TileSize;
+	}
+}

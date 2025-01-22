@@ -1,0 +1,16 @@
+package Object;
+
+import java.io.IOException;
+
+public class Key extends SuperObject{
+	
+	public Key () {
+		name = "Key";
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/objects/Chest.png"));
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+
+}

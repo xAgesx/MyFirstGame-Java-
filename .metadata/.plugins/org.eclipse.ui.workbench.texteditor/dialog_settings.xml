@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<item key="replaceBarOpen" value="true"/>
+	<list key="searchhistory">
+		<item value="paintComponent"/>
+		<item value="collision"/>
+		<item value="maxScreenRow"/>
+		<item value="maxScreenCol"/>
+		<item value="import"/>
+	</list>
+	<list key="replacehistory">
+		<item value="maxWorldRow"/>
+		<item value="maxWorldCol"/>
+	</list>
+</section>

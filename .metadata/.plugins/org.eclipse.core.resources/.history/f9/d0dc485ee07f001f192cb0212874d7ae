@@ -1,0 +1,25 @@
+package Main;
+
+import Object.Key;
+import Object.Potion;
+
+public class ObjectPlacer {
+
+	GamePanel g ;
+	
+	public ObjectPlacer(GamePanel g) {
+		this.g = g;
+	}
+	public void setObject() {
+		
+		g.obj[0] = new Key();	
+		g.obj[0].worldX = 466;
+		g.obj[0].worldY = 466;
+		
+		g.obj[1] = new Potion();	
+		g.obj[1].worldX = 466;
+		g.obj[1].worldY = 424;
+		
+		
+	}
+}

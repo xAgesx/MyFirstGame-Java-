@@ -1,0 +1,10 @@
+package Main;
+
+public class ObjectPlacer {
+
+	GamePanel g ;
+	
+	public ObjectPlacer(GamePanel g) {
+		this.g = g;
+	}
+}

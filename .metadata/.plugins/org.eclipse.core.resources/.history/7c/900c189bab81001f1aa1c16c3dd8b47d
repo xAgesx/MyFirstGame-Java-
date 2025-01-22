@@ -1,0 +1,123 @@
+package Main;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import javax.swing.JPanel;
+import Entity.Player;
+import Object.Chest;
+import Object.SuperObject;
+
+public class GamePanel extends JPanel implements Runnable{
+	
+	//Screen Settings 
+	
+	final int DefaultTileSize = 16 ;
+	final int Scale = 3 ;
+	final public int TileSize = DefaultTileSize*Scale ;
+	final public int maxScreenCol = 16; 
+	final public int maxScreenRow = 12;
+	final public int ScreenWidth = maxScreenCol * TileSize;
+	final public int ScreenHeight = maxScreenRow * TileSize;
+	
+	//WorldMap Settings
+	
+	public final int maxWorldCol = 48;
+	public final int maxWorldRow = 48;
+	public final int worldWidth = maxWorldCol * TileSize ;
+	public final int worldHeight = maxWorldRow * TileSize ;
+	
+	
+	int FPS = 60;
+	int objMaxNumber = 20 ;
+	
+	Keyhandler KeyH	= new Keyhandler();
+	Thread GameThread ;
+	
+	//Object number at a time
+	public SuperObject obj[] ;
+	public ObjectPlacer objSetter = new ObjectPlacer(this); 
+	
+	
+	
+	public Player player = new Player(this,KeyH);
+	public CollisionCheck collisionCheck = new CollisionCheck(this);
+	
+	//Tile manager
+	public TileManager TileM = new TileManager(this) ;
+	
+	
+	
+	public GamePanel() {
+		
+		obj = new SuperObject[objMaxNumber]; 
+		this.setPreferredSize(new Dimension(ScreenWidth,ScreenHeight));
+		this.setDoubleBuffered(true);
+		this.addKeyListener(KeyH);
+		this.setFocusable(true);
+		
+	}
+	
+	public void SetupGame() {
+		objSetter.setObject();
+	}
+	
+	public void StartGameThread() {
+		GameThread = new Thread(this);
+		GameThread.start();
+		
+	}
+	
+	@Override
+	public void run() {
+		while(GameThread != null) {
+			Update();
+			repaint();
+			try {
+				Thread.sleep(20);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	public void Update() {
+		
+		player.Update();
+		
+	}
+	
+	public void paintComponent(Graphics g) {
+		
+		super.paintComponent(g);
+		Graphics2D g1 = (Graphics2D)g;
+		
+		//DRAW TILES
+		TileM.Draw(g1);
+		
+		//DRAW OBJECTS
+		for (int i=0 ; i< objMaxNumber ; i++) {
+			if(obj[i]!= null)
+				obj[i].Draw(this, g1);
+		}
+
+		//DRAW PLAYER
+		int playerX = player.worldX- player.worldX + player.RelativeX ;
+		int playerY = player.worldY-player.worldY + player.RelativeY;
+		player.Draw(g1);
+		g.drawRect(playerX , playerY , 32 , 32);
+		g.setColor(Color.RED);
+		int tg = obj[3].worldX - player.worldX + player.RelativeX ;
+		int th = obj[3].worldY - player.worldY + player.RelativeY ;
+		g.drawRect(tg,th,48,48);
+		g.setColor(Color.RED);
+		
+		g1.dispose();
+		
+	}
+	
+	
+	
+}
